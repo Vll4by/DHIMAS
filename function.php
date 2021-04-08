@@ -1,27 +1,19 @@
-<?php
-// memanggil file koneksi.php untuk melakukan koneksi database
-include 'koneksi.php';
+<?php 
+// $koneksi = mysqli_connect("us-cdbr-east-03.cleardb.com","b329ab17724329","53508fa7 ","heroku_c27bcd6d8319a2f");
 
-  // membuat variabel untuk menampung data dari form
-$Hostname   = $_POST['Hostname'];
-  $Username     = $_POST['Username'];
-  $Port    = $_POST['Port'];
-  $Password   = $_POST['Password'];
-  $alamat    = $_POST['alamat'];
-  $telp     = $_POST['no_telp'];
-  $tahun     = $_POST['tahun'];
-  
+$host = "us-cdbr-east-03.cleardb.com";
+$user = "b329ab17724329";
+$pass = "53508fa7";
+$name = "heroku_c27bcd6d8319a2f";
 
-                  $query = "INSERT INTO siswa VALUES ('$nisn', '$nis','$nama', '$id_kelas', '$alamat', '$telp', '$tahun')";
-                  $result = mysqli_query($koneksi, $query); 
-                  // periska query apakah ada error
-                  if(!$result){
-                      die ("Query gagal dijalankan: ".mysqli_errno($koneksi).
-                           " - ".mysqli_error($koneksi));
-                  } else {
-                    //tampil alert dan akan redirect ke halaman index.php
-                    //silahkan ganti index.php sesuai halaman yang akan dituju
-                    echo "<script>alert('Data berhasil ditambah.');window.location='siswa.php';</script>";
-                  }
 
-            ?>
+$koneksi = mysqli_connect($host, $user, $pass, $name) or die("Koneksi ke database gagal");
+mysqli_select_db($koneksi, $name) or die('Database is not found!');
+// mysql://b329ab17724329:53508fa7@us-cdbr-east-03.cleardb.com/heroku_c27bcd6d8319a2f?reconnect=true
+ 
+// Check connection
+if (mysqli_connect_errno()){
+  echo "Koneksi database gagal : " . mysqli_connect_error();
+}
+ 
+?>
